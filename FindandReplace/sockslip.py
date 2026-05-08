@@ -3,6 +3,16 @@ from pathlib import Path
 
 from word import filemaker
 import os
+logo = r"""
+  ____             _        _ _       
+ / ___|  ___   ___| | _____| (_)_ __  
+ \___ \ / _ \ / __| |/ / __| | | '_ \ 
+  ___) | (_) | (__|   <\__ \ | | |_) |
+ |____/ \___/ \___|_|\_\___/_|_| .__/ 
+                               |_|    
+"""
+
+
 
 def single():
     replacer()
@@ -91,6 +101,9 @@ def replacer():
         print("All files processed.")
 
 def fileType():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print(logo)
+    print("=" * 40)
     r_Type = input("Welcome to the file editor and creator!\n Here, you can create new files or edit existing ones.\nDo you want to do a <batch> edit or a <single> file?")
     if(r_Type == "single"):
         single()
