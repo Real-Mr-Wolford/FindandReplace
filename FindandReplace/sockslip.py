@@ -104,7 +104,9 @@ def fileType():
     os.system('cls' if os.name == 'nt' else 'clear')
     print(logo)
     print("=" * 40)
-    r_Type = input("Welcome to the file editor and creator!\n Here, you can create new files or edit existing ones.\nDo you want to do a <batch> edit or a <single> file?")
+    print("Welcome to Sockslip: Document Automation Utility")
+    print("Generate personalized letters from data or modify existing text.")
+    r_Type = input("Do you want to create <batch> files from CSV or edit <single> file?")
     if(r_Type == "single"):
         single()
     elif r_Type == "batch":
