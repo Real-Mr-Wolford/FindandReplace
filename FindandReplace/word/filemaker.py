@@ -2,9 +2,11 @@ from pathlib import Path
 import textwrap
 import os
 import csv
+
+
 def writeFiles():
     nam = input("Enter the base name for the files: ")
-    csv_file = input("Enter the path to your data (.csv): ")
+    csv_file = input("Currently, this configuration allows for three part letters.\n A name, header 0; the body of text,  header 1; and a signature, header 2.\nEnter the path to your data (.csv): ")
 
     directory = getDirectory()
 
