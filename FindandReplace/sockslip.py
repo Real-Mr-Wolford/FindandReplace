@@ -1,4 +1,6 @@
 
+from pathlib import Path
+
 from word import filemaker
 import os
 
@@ -7,14 +9,33 @@ def single():
 
 def batch():
     need = input("Do you need to create files? Y/n")
+    need2 = ""
     if need.lower() == "y":
-        filemaker.createFiles()
+        filemaker.makeNewFiles()
+    elif need.lower() == "n":
+        need3 = input("Do you want to edit existing files? Y/n")
+        if need3.lower() == "y":
+            replacer()
+        else:
+            need2= input("Do you want to populate files from a csv? Y/n")
+            if need2.lower()=="y":
+                filemaker.writeFiles()
+                print("Files populated from CSV.")
+                cont= input("Would you like to do something else? Y/n")
+                if cont.lower() == "y":
+                    fileType()
+                else: 
+                    print("Exiting.")
+                    return
+            else:
+                pass
     else:
         print("Skipping file creation.")
 
     
-    replacer()
+    
 def replacer():
+    
     replacements = {}
     print("Text Replacer")
     directory = filemaker.getDirectory()
@@ -55,7 +76,7 @@ def replacer():
         print("Processing")
 
         for filename in text_files:
-            input_path = os.path.join(input_folder,filename)
+            input_path = Path(input_folder) / filename
             with open(input_path,"r", encoding="utf-8") as f:
                 content = f.read()
 
@@ -69,11 +90,13 @@ def replacer():
 
         print("All files processed.")
 
-
-r_Type = input("Do you want to do a <batch> edit or a <single> file?")
-if(r_Type == "single"):
-    single()
-elif r_Type == "batch":
-    batch()
-else:
-    print("Invalid input. Please enter 'single' or 'batch'.")
+def fileType():
+    r_Type = input("Welcome to the file editor and creator!\n Here, you can create new files or edit existing ones.\nDo you want to do a <batch> edit or a <single> file?")
+    if(r_Type == "single"):
+        single()
+    elif r_Type == "batch":
+        batch()
+    else:
+        print("Invalid input. Please enter 'single' or 'batch'.")
+        fileType()
+fileType()
